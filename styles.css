@@ -98,13 +98,21 @@ main {
   margin: 0;
 }
 
-/* about: profile card (photo + links) + bio side by side */
+/* about: profile card (photo + links) on the left, name + bio on the right.
+   grid (not flex) so the name can sit atop the photo on mobile while staying
+   beside the bio on desktop — see the narrow-screen breakpoint below. */
 .about {
-  display: flex;
-  gap: 2.75rem;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  grid-template-areas:
+    "profile name"
+    "profile bio";
+  column-gap: 2.75rem;
+  align-items: start;
 }
-.about__text { flex: 1 1 auto; min-width: 0; }
+.profile { grid-area: profile; }
+.about__heading { grid-area: name; }
+.about__text { grid-area: bio; min-width: 0; }
 .about__text p { margin: 0 0 1rem; }
 .about__text p:last-of-type { margin-bottom: 0; }
 .about__heading {
@@ -132,6 +140,7 @@ main {
   font-size: .95rem;
 }
 .profile__list li { margin: 0; }
+.profile__br { display: none; } /* mobile-only line break; see narrow breakpoint */
 .profile__row {
   display: flex;
   align-items: center;
@@ -351,19 +360,53 @@ main.wide { max-width: 58rem; }
   body { font-size: 18px; }
   .nav__links { gap: 1rem; }
   .masthead { padding-top: 3rem; padding-bottom: 1.75rem; }
-  .about { gap: 1.75rem; }
+  .about { column-gap: 1.75rem; grid-template-columns: 160px 1fr; }
   .profile { width: 160px; }
   .profile__photo { width: 160px; height: 196px; }
-  .pubs li { grid-template-columns: 1fr; gap: .15rem; }
-  .pubs__year { padding-top: 0; }
+  /* drop the year kicker entirely on mobile (every citation already names its
+     year inline) and give the entries more vertical breathing room */
+  .pubs li { grid-template-columns: 1fr; padding: .7rem 0; }
+  .pubs__year { display: none; }
 }
 
-/* only stack the profile above the bio on truly narrow screens */
+/* on truly narrow screens: name on top, photo centered beneath it, then the
+   links as a centered inline list with dot separators (echoing the sidebar,
+   laid out in a row). bio paragraphs stay left-aligned for readability. */
 @media (max-width: 500px) {
-  .about { flex-direction: column; gap: 1.5rem; }
-  .profile { width: 100%; }
-  .profile__photo { width: 150px; height: 184px; }
-  .profile__list { font-size: 1rem; }
+  .about {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "profile"
+      "bio";
+    row-gap: 1.4rem;
+  }
+  .profile { width: 100%; text-align: center; }
+  .about__heading { text-align: center; margin-bottom: 0; }
+  .profile__photo {
+    width: 172px;
+    height: 210px;
+    margin: 0 auto;
+  }
+  .profile__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   /* centers each line as a unit */
+    align-items: center;
+    row-gap: .25rem;
+    margin-top: 1.1rem;
+    font-size: .98rem;
+  }
+  .profile__list li { display: flex; align-items: center; }
+  .profile__list li.profile__br { display: block; flex-basis: 100%; height: 0; }
+  /* dot between the two links sharing each line (after Email and after ORCID) */
+  .profile__list li:nth-child(1)::after,
+  .profile__list li:nth-child(4)::after {
+    content: "·";
+    color: var(--ink-faint);
+    margin: 0 .7rem;
+  }
+  .profile__row { padding: .2rem 0; }
 }
 
 @media (max-width: 420px) {
