@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rafael de la Vega</title>
+  <meta name="description" content="Rafael de la Vega — PhD Fellow at UNU-MERIT. Research on structural change, income inequality, and technological change.">
+
+  <!-- favicon (graduation cap emoji, no image file needed) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+
+  <!-- social preview (Open Graph + Twitter). rafadelavega.github.io is filled in at deploy. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rafael de la Vega">
+  <meta property="og:description" content="Applied quantitative economist — structural change, labour economics, and income inequality. Final-year PhD fellow at UNU-MERIT.">
+  <meta property="og:image" content="https://rdelavega.github.io/assets/photo.jpeg">
+  <meta property="og:url" content="https://rafadelavega.github.io/">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ TOP NAV ============ -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__inner">
+      <a class="nav__home" href="index.html">Rafael de la Vega</a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="is-active">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ============ ABOUT (profile card + bio) ============ -->
+    <section class="section about">
+      <aside class="profile">
+        <img class="profile__photo" src="assets/photo.jpeg" alt="Rafael de la Vega">
+        <ul class="profile__list">
+          <li><a class="profile__row js-mail" href="#" data-u="delavega" data-d="merit.unu.edu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+            <span class="js-mail__label">Email</span></a></li>
+          <li><a class="profile__row" href="https://scholar.google.com/citations?user=OBIXLiMAAAAJ&amp;hl=en">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5-10-5Z"/><path d="M6 11.5V16c0 1.1 2.7 2.8 6 2.8s6-1.7 6-2.8v-4.5"/></svg>
+            <span>Google Scholar</span></a></li>
+          <li><a class="profile__row" href="https://orcid.org/0000-0002-3754-3258">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><text x="12" y="15.6" text-anchor="middle" font-size="9.5" font-family="Georgia, serif" fill="currentColor" stroke="none">iD</text></svg>
+            <span>ORCID</span></a></li>
+          <li><a class="profile__row" href="https://www.linkedin.com/in/rafadelavega/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 11.5v5.5"/><path d="M7.5 8v.01"/><path d="M11.5 17v-5.5"/><path d="M11.5 13.8a2.6 2.6 0 0 1 5.2 0V17"/></svg>
+            <span>LinkedIn</span></a></li>
+        </ul>
+      </aside>
+      <div class="about__text">
+        <h1 class="about__heading">Rafael de la Vega</h1>
+        <p>Hi, welcome to my website! I am an applied quantitative economist working
+          on the intersection of structural change, labour economics, and income
+          inequality. Currently, I'm a final-year PhD fellow at UNU&#8288;-&#8288;MERIT, and my
+          thesis investigates how income inequality is shaped by technological change
+          and the sectoral composition of economies.</p>
+        <p>You may follow these links for <a href="cv.html">my CV</a>,
+          <a href="assets/delavega_jmp.pdf">my job market paper</a>,
+          and <a href="research.html">my research</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Assemble the email at runtime so it never sits in the page source as
+    // plain text — keeps address harvesters (which don't run JS) from scraping it.
+    document.querySelectorAll('.js-mail').forEach(function (a) {
+      var addr = a.dataset.u + '@' + a.dataset.d;
+      a.href = 'mailto:' + addr;
+      var label = a.querySelector('.js-mail__label');
+      if (label) {
+        a.title = addr;      // sidebar: keep the short "Email" label, real address on hover
+      } else {
+        a.textContent = addr; // in bio: show the real address (clickable + copyable)
+      }
+    });
+  </script>
+
+</body>
+</html>

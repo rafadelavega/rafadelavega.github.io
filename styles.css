@@ -1,0 +1,372 @@
+/* =========================================================
+   Rafael Consentino de la Vega — personal site
+   Design: editorial, quiet, typographic. No cards, no glow.
+   ========================================================= */
+
+:root {
+  --ink:        #17171b;   /* near-black, neutral   */
+  --ink-soft:   #52525b;   /* secondary text        */
+  --ink-faint:  #8a8a93;   /* metadata / dates      */
+  --paper:      #ffffff;   /* clean white           */
+  --rule:       #e6e6ea;   /* hairlines, cool       */
+  --accent:     #1f4a75;   /* deep ink-blue         */
+  --accent-dk:  #143354;
+  --placeholder-bg: #f4f4f6;
+  --placeholder-br: #cfcfd6;
+
+  --measure: 58rem;        /* page width (matches CV embed) */
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --mono:  "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(31, 74, 117, 0.30);
+  transition: border-color .15s ease, color .15s ease;
+}
+a:hover { color: var(--accent-dk); border-bottom-color: var(--accent-dk); }
+
+/* -------- top navigation -------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(120%) blur(6px);
+}
+.nav__inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: .7rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.nav__home {
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1;
+  color: var(--ink);
+  border: none;
+}
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 1.6rem;
+  margin: 0; padding: 0;
+  font-size: 1rem;
+  letter-spacing: .005em;
+}
+.nav__links a { color: var(--ink-soft); border: none; }
+.nav__links a:hover { color: var(--accent); }
+
+/* -------- layout scaffold -------- */
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* -------- masthead -------- */
+.masthead {
+  padding: 4.75rem 0 2.5rem;
+  text-align: center;
+}
+.masthead h1 {
+  font-size: clamp(2.6rem, 6vw, 3.9rem);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+/* about: profile card (photo + links) + bio side by side */
+.about {
+  display: flex;
+  gap: 2.75rem;
+  align-items: flex-start;
+}
+.about__text { flex: 1 1 auto; min-width: 0; }
+.about__text p { margin: 0 0 1rem; }
+.about__text p:last-of-type { margin-bottom: 0; }
+.about__heading {
+  font-size: 1.85rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  margin: 0 0 1.1rem;
+}
+
+/* left profile column */
+.profile { flex: 0 0 auto; width: 190px; }
+.profile__photo {
+  width: 190px;
+  height: 232px;
+  border-radius: 2px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--rule);
+}
+.profile__list {
+  list-style: none;
+  margin: .85rem 0 0;
+  padding: 0;
+  font-size: .95rem;
+}
+.profile__list li { margin: 0; }
+.profile__row {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .34rem 0;
+  color: var(--ink-soft);
+  border: none;
+  line-height: 1.15;
+}
+a.profile__row:hover { color: var(--accent); }
+.profile__row svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: var(--ink-faint);
+  transition: color .15s ease;
+  transform: translateY(-1px); /* optical nudge: serif caps pull the text's visual weight up */
+}
+a.profile__row:hover svg { color: var(--accent); }
+
+.linkrow {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 0;
+  margin: 0; padding: 0;
+  font-size: 1.02rem;
+}
+.linkrow li { display: flex; align-items: center; }
+.linkrow li:not(:last-child)::after {
+  content: "·";
+  color: var(--ink-faint);
+  margin: 0 .7rem;
+}
+.linkrow a { border-bottom: 1px solid transparent; }
+.linkrow a:hover { border-bottom-color: var(--accent-dk); }
+
+.masthead__photo {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 220px;
+  border-radius: 2px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+/* -------- placeholders (photo + bio) -------- */
+.placeholder {
+  background: var(--placeholder-bg);
+  border: 1px dashed var(--placeholder-br);
+  color: var(--ink-faint);
+}
+.masthead__photo.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: .72rem;
+  line-height: 1.5;
+  letter-spacing: .03em;
+}
+.placeholder--text {
+  display: block;
+  padding: 1.1rem 1.25rem;
+  border-radius: 2px;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* -------- sections -------- */
+.section {
+  padding: 2.5rem 0;
+}
+.section__label {
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 1.25rem;
+}
+
+.lede { margin: 0 0 1rem; }
+.themes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.themes li {
+  padding: .5rem 0 .5rem 1.4rem;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.themes li:first-child { border-top: 1px solid var(--rule); }
+.themes li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.note {
+  font-family: var(--mono);
+  font-size: .76rem;
+  color: var(--ink-faint);
+  margin: 1rem 0 0;
+}
+
+/* -------- publications -------- */
+.pub-theme {
+  font-size: 1.14rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin: 2rem 0 .2rem;
+}
+.pub-theme:first-of-type { margin-top: 0; }
+.pub-group {
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 1.1rem 0 .4rem;
+  font-size: 1rem;
+}
+.pubs {
+  list-style: none;
+  margin: 0 0 .4rem;
+  padding: 0;
+}
+.pubs li {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 0 1rem;
+  padding: .3rem 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.pubs__year {
+  font-family: var(--mono);
+  font-size: .82rem;
+  color: var(--ink-faint);
+  padding-top: .18rem;
+  font-variant-numeric: tabular-nums;
+}
+.pubs__body strong { font-weight: 600; }
+
+/* -------- teaching -------- */
+.teaching { list-style: none; margin: 0; padding: 0; }
+.teaching li {
+  padding: .9rem 0;
+  border-top: 1px solid var(--rule);
+}
+.teaching li:first-child { border-top: none; padding-top: 0; }
+.teaching__role { display: block; font-weight: 500; }
+.teaching__where { display: block; color: var(--ink-soft); font-size: .98rem; }
+
+/* -------- contact -------- */
+.contact { margin: 0; line-height: 1.8; }
+
+/* -------- footer -------- */
+.foot {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3.5rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: .74rem;
+  color: var(--ink-faint);
+}
+.foot p { margin: 0; }
+
+/* -------- multi-page: active nav + page heads -------- */
+.nav__links a.is-active {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px;
+}
+
+.page-head { padding: 3.5rem 0 1rem; }
+.page-head + .section { padding-top: .5rem; }
+.page-head h1 {
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.page-head--row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.cv-download {
+  font-family: var(--mono);
+  font-size: .8rem;
+  white-space: nowrap;
+}
+
+/* -------- CV page -------- */
+main.wide { max-width: 58rem; }
+.cv-page .nav__inner { max-width: 58rem; }
+.cv-embed {
+  display: block;
+  width: 100%;
+  height: 85vh;
+  min-height: 520px;
+  margin-bottom: 4rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: #f7f7f8;
+}
+.cv-fallback { padding: 2rem; text-align: center; }
+
+/* -------- responsive -------- */
+@media (max-width: 620px) {
+  body { font-size: 18px; }
+  .nav__links { gap: 1rem; }
+  .masthead { padding-top: 3rem; padding-bottom: 1.75rem; }
+  .about { gap: 1.75rem; }
+  .profile { width: 160px; }
+  .profile__photo { width: 160px; height: 196px; }
+  .pubs li { grid-template-columns: 1fr; gap: .15rem; }
+  .pubs__year { padding-top: 0; }
+}
+
+/* only stack the profile above the bio on truly narrow screens */
+@media (max-width: 500px) {
+  .about { flex-direction: column; gap: 1.5rem; }
+  .profile { width: 100%; }
+  .profile__photo { width: 150px; height: 184px; }
+  .profile__list { font-size: 1rem; }
+}
+
+@media (max-width: 420px) {
+  .nav__links li:nth-child(4),
+  .nav__links li:nth-child(5) { display: none; }
+}
