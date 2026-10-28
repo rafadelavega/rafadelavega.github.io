@@ -67,6 +67,13 @@ a:hover { color: var(--accent-dk); border-bottom-color: var(--accent-dk); }
   color: var(--ink);
   border: none;
 }
+/* the name shows in full by default; small screens swap in the "RdlV"
+   monogram (see the breakpoint below) so the nav never wraps to two lines */
+.nav__home-short { display: none; }
+@media (max-width: 480px) {
+  .nav__home-full { display: none; }
+  .nav__home-short { display: inline; }
+}
 .nav__links {
   list-style: none;
   display: flex;
