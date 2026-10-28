@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teaching — Rafael de la Vega</title>
+  <meta name="description" content="Teaching by Rafael de la Vega — an introductory economics course recorded for remote teaching at the Polytechnic School of UFRJ.">
+
+  <!-- favicon (graduation cap emoji, no image file needed) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+
+  <!-- social preview (Open Graph + Twitter). rafadelavega.github.io is filled in at deploy. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Teaching — Rafael de la Vega">
+  <meta property="og:description" content="An introductory economics course recorded for remote teaching at the Polytechnic School of UFRJ.">
+  <meta property="og:image" content="https://rafadelavega.github.io/assets/photo.jpeg">
+  <meta property="og:url" content="https://rafadelavega.github.io/teaching.html">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ TOP NAV ============ -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__inner">
+      <a class="nav__home" href="index.html">Rafael de la Vega</a>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="teaching.html" class="is-active">Teaching</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <header class="page-head">
+      <h1>Teaching</h1>
+    </header>
+
+    <section class="section">
+
+      <p class="lede">An introductory economics course I recorded in 2020 for remote teaching during
+        the pandemic, for engineering undergraduates at the Polytechnic School of UFRJ. The lectures
+        are in Portuguese.</p>
+
+      <h3 class="pub-theme">Economia A — course modules</h3>
+      <!-- Each module links to its YouTube playlist. The links are assembled at runtime
+           (see the script below) so the youtube.com URLs stay out of the page source. -->
+      <ol class="pubs">
+        <li>
+          <span class="pubs__year">01</span>
+          <span class="pubs__body"><a class="js-pl" data-pl="PLGcjfCiwoinPgclO7-OZvx1ZdJgFjwn_V" title="Videoaula 1: Concorrência Perfeita">Perfect competition</a></span>
+        </li>
+        <li>
+          <span class="pubs__year">02</span>
+          <span class="pubs__body"><a class="js-pl" data-pl="PLGcjfCiwoinNoFWXz63vMXOQj8DC8R-Cq" title="Videoaula 2: Teoria da Firma">Theory of the firm</a></span>
+        </li>
+        <li>
+          <span class="pubs__year">03</span>
+          <span class="pubs__body"><a class="js-pl" data-pl="PLGcjfCiwoinOtcdJ3iZZ_gC4iWfhFPyBT" title="Videoaula 3: Conceitos básicos de macroeconomia">Foundations of macroeconomics</a></span>
+        </li>
+        <li>
+          <span class="pubs__year">04</span>
+          <span class="pubs__body"><a class="js-pl" data-pl="PLGcjfCiwoinMhViflZyt4o1gcgY_7IlRj" title="Videoaula 4: Mercado de bens e serviços e política fiscal">The goods market and fiscal policy</a></span>
+        </li>
+        <li>
+          <span class="pubs__year">05</span>
+          <span class="pubs__body"><a class="js-pl" data-pl="PLGcjfCiwoinPKg-wXARMbscVCpOwlxx7f" title="Videoaula 5: Mercado monetário e política monetária">The money market and monetary policy</a></span>
+        </li>
+        <li>
+          <span class="pubs__year">06</span>
+          <span class="pubs__body"><a class="js-pl" data-pl="PLGcjfCiwoinMs95rrkLvNxwQu4AxrF7Hn" title="Videoaula 6: Economia internacional">International economics</a></span>
+        </li>
+      </ol>
+
+    </section>
+
+  </main>
+
+  <script>
+    // Assemble the playlist links at runtime so the full youtube.com/playlist?list=…
+    // URLs never sit in the page source — same idea as the email on the home page:
+    // it keeps address/link harvesters that don't run JS from scraping them.
+    document.querySelectorAll('.js-pl').forEach(function (a) {
+      a.href = 'https://www.youtube.com/playlist?list=' + a.dataset.pl;
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+  </script>
+
+</body>
+</html>

@@ -409,7 +409,8 @@ main.wide { max-width: 58rem; }
   .profile__row { padding: .2rem 0; }
 }
 
+/* small phones: tighten the nav spacing so all four links fit beside the
+   (wrapping) name, rather than dropping any item */
 @media (max-width: 420px) {
-  .nav__links li:nth-child(4),
-  .nav__links li:nth-child(5) { display: none; }
+  .nav__links { gap: .75rem; }
 }
