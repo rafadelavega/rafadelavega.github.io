@@ -67,13 +67,6 @@ a:hover { color: var(--accent-dk); border-bottom-color: var(--accent-dk); }
   color: var(--ink);
   border: none;
 }
-/* the name shows in full by default; small screens swap in the "RdlV"
-   monogram (see the breakpoint below) so the nav never wraps to two lines */
-.nav__home-short { display: none; }
-@media (max-width: 480px) {
-  .nav__home-full { display: none; }
-  .nav__home-short { display: inline; }
-}
 .nav__links {
   list-style: none;
   display: flex;
@@ -293,6 +286,13 @@ a.profile__row:hover svg { color: var(--accent); }
   font-variant-numeric: tabular-nums;
 }
 .pubs__body strong { font-weight: 600; }
+/* teaching modules: numbered in the body serif ("1.") rather than the mono kicker */
+.pubs--numbered .pubs__year {
+  font-family: var(--serif);
+  font-size: 1rem;
+  padding-top: 0;
+  font-variant-numeric: oldstyle-nums;
+}
 
 /* -------- teaching -------- */
 .teaching { list-style: none; margin: 0; padding: 0; }
